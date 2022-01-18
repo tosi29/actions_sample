@@ -11,12 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      
-      - uses: github-actions-up-and-running/pr-comment@v1.0.1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          message: ${{ steps.multiline.outputs.message_body }}      
+      - uses: actions/checkout@v2 
       
       - name: Generate front_matter and back_matter
         run: |
