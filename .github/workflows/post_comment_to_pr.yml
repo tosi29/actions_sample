@@ -1,0 +1,48 @@
+name: Post comment to PR
+
+on:
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2 
+      
+      - name: Generate front_matter and back_matter
+        run: |
+          echo "# Comment by GitHub Actions
+          <pre><details>
+          <summary> post_comment_to_pr.yml </summary>
+          <code>" > front_matter
+          
+          echo "</code></details></pre>" > back_matter
+
+      - name: No escape text
+        id: no_escape
+        run: |
+          text=`cat front_matter .github/workflows/post_comment_to_pr.yml back_matter`
+          echo "::set-output name=message_body::$text"
+
+      - uses: github-actions-up-and-running/pr-comment@v1.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: ${{ steps.no_escape.outputs.message_body }}
+
+      - name: Escape newline characters　by URL encoding
+        id: multiline
+        run: |
+          text=`cat front_matter .github/workflows/post_comment_to_pr.yml back_matter`
+          text="${text//'%'/'%25'}"
+          text="${text//$'\n'/'%0A'}"
+          text="${text//$'\r'/'%0D'}" 
+          echo "::set-output name=message_body::$text"
+
+      - uses: github-actions-up-and-running/pr-comment@v1.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: ${{ steps.multiline.outputs.message_body }}
