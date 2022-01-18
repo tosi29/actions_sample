@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "# Comment by GitHub Actions
           <pre><summary> post_comment_to_pr.yml </summary>
-          <details><code>" > fromt_matter
+          <details><code>" > front_matter
           
           echo "</code></details></pre>" > back_matter
 
