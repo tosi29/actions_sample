@@ -25,8 +25,10 @@ jobs:
         continue-on-error: true
         # あとで実行結果を参照するため、IDを振っておく
         id: error_execution
-        # ファイルが存在しないので、確実にエラーになる
-        run: cat no_file
+        # ディレクトリが存在することで、2回目は確実にエラーになる
+        run: |
+          mkdir hoge
+          mkdir hoge
 
       - name: Error handling
         run: |
