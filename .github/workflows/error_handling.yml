@@ -31,10 +31,8 @@ jobs:
           mkdir hoge
 
       - name: Error handling
+        if: ${{ steps.error_execution.outcome == 'failure' }}
         run: |
           echo "Error handling"
           echo ${{ steps.error_execution.outcome }}
-
-      - name: Exit after error handling
-        if: ${{ steps.error_execution.outcome == 'failure' }}
-        run: exit 1
+          exit 1
