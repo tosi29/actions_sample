@@ -16,8 +16,9 @@ jobs:
       - name: Generate front_matter and back_matter
         run: |
           echo "# Comment by GitHub Actions
-          <pre><summary> post_comment_to_pr.yml </summary>
-          <details><code>" > front_matter
+          <pre><details>
+          <summary> post_comment_to_pr.yml </summary>
+          <code>" > front_matter
           
           echo "</code></details></pre>" > back_matter
 
