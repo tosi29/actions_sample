@@ -1,0 +1,26 @@
+name: Error Handling Sample
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Error
+        # エラーでも処理を継続する
+        continue-on-error: true
+        # ファイルが存在しないので、確実にエラーになる
+        run: cat no_file
+
+      - name: Error handling
+        run: echo "Error handling"
+
+      - name: Exit as error
+        run: exit 1
