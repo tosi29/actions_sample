@@ -22,7 +22,9 @@ jobs:
         run: cat no_file
 
       - name: Error handling
-        run: echo "Error handling"
+        run: |
+          echo "Error handling"
+          echo ${{ steps.execution.outcome }}
 
       - name: Exit as error
         if: ${{ steps.execution.outcome == 'failure' }}
