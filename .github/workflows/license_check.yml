@@ -18,6 +18,8 @@ jobs:
        uses: actions/dependency-review-action@v3
        with:
          allow-licenses: |
-           MIT
+           MIT,
+           BSD-2-Clause AND BSD-3-Clause,
+           Apache-2.0
          allow-dependencies-licenses: |
            pkg:github/hashicorp/setup-terraform@v2.0.3
