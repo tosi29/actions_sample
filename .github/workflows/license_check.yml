@@ -23,4 +23,5 @@ jobs:
            Apache-2.0
          allow-dependencies-licenses: |
            pkg:github/hashicorp/setup-terraform@v2.0.3,
+           pkg:pypi/psycopg2@2.9.4,
            pkg:pypi/aws-lambda-powertools@2.26.0
