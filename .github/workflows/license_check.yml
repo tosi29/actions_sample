@@ -19,4 +19,4 @@ jobs:
        with:
          allow-licenses: |
            MIT,
-           MPL
+           MPL-2.0
