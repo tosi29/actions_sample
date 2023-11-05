@@ -20,7 +20,7 @@ jobs:
          allow-licenses: |
            MIT,
            BSD-2-Clause AND BSD-3-Clause,
-           Apache-2.0
+           Apache-2.0,
          allow-dependencies-licenses: |
            pkg:github/hashicorp/setup-terraform@v2.0.3,
            pkg:pypi/psycopg2@2.9.4,
