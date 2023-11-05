@@ -1,0 +1,27 @@
+name: 'Dependency Review'
+on: [pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+   runs-on: ubuntu-latest
+   steps:
+     - name: 'Checkout Repository'
+       uses: actions/checkout@v4
+
+     - name: HashiCorp - Setup Terraform
+       uses: hashicorp/setup-terraform@v2.0.3
+       
+     - name: Dependency Review
+       uses: actions/dependency-review-action@v3
+       with:
+         allow-licenses: |
+           MIT,
+           BSD-2-Clause AND BSD-3-Clause,
+           Apache-2.0
+         allow-dependencies-licenses: |
+           pkg:github/hashicorp/setup-terraform@v2.0.3,
+           pkg:pypi/psycopg2@2.9.4,
+           pkg:pypi/aws-lambda-powertools@2.26.0
